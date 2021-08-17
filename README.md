@@ -1,4 +1,11 @@
-# ll_s
+# docker-laravel-templete
+
+## build
+just run sh setup.sh
+
+```sh
+sh setup.sh
+```
 
 ## version
 
