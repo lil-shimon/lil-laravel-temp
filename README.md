@@ -18,7 +18,7 @@ docker compose up -d
 
 container
 ```
-docker compose ll_app exec bash
+docker compose exec ll_app bash
 ```
 
 version
