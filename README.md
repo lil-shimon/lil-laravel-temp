@@ -16,9 +16,14 @@ up
 docker compose up -d
 ```
 
-container
+php container
 ```
 docker compose exec ll_app bash
+```
+
+mysql container
+```
+docker compose exec db bash
 ```
 
 version
