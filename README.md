@@ -1,7 +1,7 @@
 # docker-laravel-templete
 
 ## build
-just run setup.sh
+just run [setup.sh](https://github.com/lil-shimon/docker-laravel-temp/blob/master/setup.sh)
 
 ```sh
 sh setup.sh
