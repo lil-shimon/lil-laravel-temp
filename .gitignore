@@ -1,2 +1,2 @@
 .env
-./infra/mysql/volumes/
+infra/mysql/volumes/
