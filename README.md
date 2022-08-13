@@ -26,6 +26,7 @@ when you change APP_NAME, change my.cnf and default.conf for mysql and nginx bec
 ```
 
 mysql conf is on .env.example
+```.env.example```
 ```
 DB_NAME=database
 DB_USER=user
@@ -33,6 +34,7 @@ DB_PASS=secret
 ```
 
 when you fix conf, you must edit laravel env as well.
+```backend/.env.example```
 ```
 DB_DATABASE=database
 DB_USERNAME=user
@@ -40,6 +42,8 @@ DB_PASSWORD=secret
 ```
 
 ### step1:
+
+just run script
 
 ```sh
 sh setup.sh
@@ -52,7 +56,7 @@ sh setup.sh
 - composer 2.0.14
 - nginx 1.20.1
 - laravel 8.54.0
-- mysql 8.0.26
+- mysql 5.7
 
 ## command
 
