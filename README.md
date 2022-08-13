@@ -1,7 +1,45 @@
 # docker-laravel-templete
 
 ## build
-just run [setup.sh](https://github.com/lil-shimon/docker-laravel-temp/blob/master/setup.sh)
+
+### step0(optional)
+if you want, change ```APP_NAME``` on .env.example.
+when you change APP_NAME, change my.cnf and default.conf for mysql and nginx because it effects container name of docker
+
+```setup.sh```
+```shell
+    echo "step3: composer install >>>"
+    docker exec -it lil-php-fpm composer install // here
+
+    echo "step4: migration >>>"
+    docker exec -it lil-php-fpm php artisan migrate // here
+```
+
+
+```default.conf```
+```
+    location ~ \.php$ {
+        fastcgi_pass lil-php-fpm:9000; // here
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+```
+
+mysql conf is on .env.example
+```
+DB_NAME=database
+DB_USER=user
+DB_PASS=secret
+```
+
+when you fix conf, you must edit laravel env as well.
+```
+DB_DATABASE=database
+DB_USERNAME=user
+DB_PASSWORD=secret
+```
+
+### step1:
 
 ```sh
 sh setup.sh
