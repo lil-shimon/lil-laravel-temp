@@ -25,7 +25,8 @@ when you change APP_NAME, change my.cnf and default.conf for mysql and nginx bec
     }
 ```
 
-mysql conf is on .env.example
+mysql conf is on .env.example 
+
 ```.env.example```
 ```
 DB_NAME=database
@@ -34,6 +35,7 @@ DB_PASS=secret
 ```
 
 when you fix conf, you must edit laravel env as well.
+
 ```backend/.env.example```
 ```
 DB_DATABASE=database
