@@ -4,7 +4,7 @@
 
 ### step0(optional)
 if you want, change ```APP_NAME``` on .env.example.
-when you change APP_NAME, change my.cnf and default.conf for mysql and nginx because it effects container name of docker
+when you change APP_NAME, change my.cnf and default.conf for mysql and nginx as well. It's because it effects container name of docker
 
 ```setup.sh```
 ```shell
