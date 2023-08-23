@@ -1,61 +1,60 @@
-# docker-laravel-templete
+# Docker-Laravel-Template
 
-## build
+## Build Process
 
-### step0(optional)
-if you want, change ```APP_NAME``` on .env.example.
-when you change APP_NAME, change my.cnf and default.conf for mysql and nginx as well. It's because it effects container name of docker
+### Preliminary Step (Optional)
+If you wish to modify the `APP_NAME` in `.env.example`, make sure to also update the corresponding values in `my.cnf` for MySQL and `default.conf` for Nginx. This is important because these configurations affect the container names within Docker.
 
-```setup.sh```
+#### In `setup.sh`
+
 ```shell
-    echo "step3: composer install >>>"
-    docker exec -it lil-php-fpm composer install // here
+echo "Executing step 3: Installing Composer dependencies..."
+docker exec -it your-php-fpm-container-name composer install
 
-    echo "step4: migration >>>"
-    docker exec -it lil-php-fpm php artisan migrate // here
+echo "Executing step 4: Performing Database Migrations..."
+docker exec -it your-php-fpm-container-name php artisan migrate
 ```
 
+#### In `default.conf`
 
-```default.conf```
-```
-    location ~ \.php$ {
-        fastcgi_pass lil-php-fpm:9000; // here
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
+```nginx
+location ~ \.php$ {
+    fastcgi_pass your-php-fpm-container-name:9000;
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    include fastcgi_params;
+}
 ```
 
-mysql conf is on .env.example 
+#### MySQL Configuration in `.env.example`
 
-```.env.example```
-```
+```env
 DB_NAME=database
 DB_USER=user
 DB_PASS=secret
 ```
 
-when you fix conf, you must edit laravel env as well.
+After updating these configurations, ensure you also revise the Laravel environment file:
 
-```backend/.env.example```
-```
+#### In `backend/.env.example`
+
+```env
 DB_DATABASE=database
 DB_USERNAME=user
 DB_PASSWORD=secret
 ```
 
-### step1:
-
-just run script
+### Step 1
+Execute the setup script to initialize the environment:
 
 ```sh
 sh setup.sh
 ```
 
-## version
+## Supported Versions
 
-- docker 20.10.7
-- php 8.0.9
-- composer 2.0.14
-- nginx 1.20.1
-- laravel 8.54.0
-- mysql 5.7
+- Docker: 20.10.7
+- PHP: 8.0.9
+- Composer: 2.0.14
+- Nginx: 1.20.1
+- Laravel: 8.54.0
+- MySQL: 5.7
