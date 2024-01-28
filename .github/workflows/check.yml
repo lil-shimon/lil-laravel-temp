@@ -1,0 +1,50 @@
+name: Laravel Checks
+
+on: [pull_request]
+
+jobs:
+  style-check:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        tools: php-cs-fixer, phpstan
+    - name: Check Code Style
+      run: php-cs-fixer fix --dry-run --diff
+
+  static-analysis:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        tools: phpstan
+    - name: Composer install
+      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Run Static Analysis
+      run: phpstan analyse
+
+  security-check:
+    name: Dependency Security Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+    - name: Composer install
+      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Check Dependencies for Vulnerabilities
+      run: composer require --dev enlightn/security-checker && vendor/bin/security-checker security:check
+
