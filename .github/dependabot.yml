@@ -9,3 +9,13 @@ updates:
     directory: "/backend" # Location of package manifests
     schedule:
       interval: "weekly"
+      
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/backend" # Location of package manifests
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker" # See documentation for possible values
+    directory: "/infra/php" # Location of package manifests
+    schedule:
+      interval: "weekly"
